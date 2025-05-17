@@ -1,1218 +1,897 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H丁H组合刀具 - 专业厨房切割解决方案</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#C8102E', // 主色调：深红色，传达专业和品质
-                        secondary: '#FF8C00', // 辅助色：橙色，传达活力和热情
-                        neutral: {
-                            100: '#F5F5F5',
-                            200: '#E5E5E5',
-                            300: '#D4D4D4',
-                            400: '#A3A3A3',
-                            500: '#737373',
-                            600: '#525252',
-                            700: '#404040',
-                            800: '#262626',
-                            900: '#171717',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 0.5s ease-in-out',
-                        'slide-up': 'slideUp 0.5s ease-out',
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        slideUp: {
-                            '0%': { transform: 'translateY(20px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' },
-                        }
-                    }
-                }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>H丁H组合刀具 - 专业厨房工具</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3B82F6',
+            secondary: '#10B981',
+            neutral: {
+              100: '#F3F4F6',
+              200: '#E5E7EB',
+              300: '#D1D5DB',
+              400: '#9CA3AF',
+              500: '#6B7280',
+              600: '#4B5563',
+              700: '#374151',
+              800: '#1F2937',
+              900: '#111827',
             }
-        }
-    </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .content-auto {
-                content-visibility: auto;
-            }
-            .text-shadow {
-                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            }
-            .card-hover {
-                transition: all 0.3s ease;
-            }
-            .card-hover:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            }
-            .gradient-overlay {
-                background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.4));
-            }
-            .scrollbar-hide::-webkit-scrollbar {
-                display: none;
-            }
-            .scrollbar-hide {
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-            }
-        }
-    </style>
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .transition-custom {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .hover-lift {
+        transform: translateY(0);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .hover-lift:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+    }
+  </style>
 </head>
-<body class="font-sans text-neutral-800 bg-neutral-100">
-    <!-- 导航栏 -->
-    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/95 shadow-md">
-        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-            <a href="#" class="flex items-center">
-                <span class="text-primary text-2xl font-bold">H丁H</span>
-                <span class="ml-2 text-neutral-800 font-bold">组合刀具</span>
+
+<body class="font-inter text-neutral-800 bg-white">
+  <!-- 导航栏 -->
+  <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/95 shadow-sm">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <a href="#" class="flex items-center">
+            <i class="fa-solid fa-knife-kitchen text-primary text-2xl mr-2"></i>
+            <span class="text-xl font-bold text-neutral-800">H丁H组合刀具</span>
+          </a>
+        </div>
+        
+        <!-- 桌面导航 -->
+        <nav class="hidden md:flex space-x-8">
+          <a href="#intro" class="text-neutral-600 hover:text-primary font-medium transition-custom">产品简介</a>
+          <a href="#scope" class="text-neutral-600 hover:text-primary font-medium transition-custom">适用范围</a>
+          <a href="#purchase" class="text-neutral-600 hover:text-primary font-medium transition-custom">购买方式</a>
+          <a href="#usage" class="text-neutral-600 hover:text-primary font-medium transition-custom">使用方法</a>
+          <a href="#safety" class="text-neutral-600 hover:text-primary font-medium transition-custom">安全注意事项</a>
+          <a href="#service" class="text-neutral-600 hover:text-primary font-medium transition-custom">售后服务</a>
+        </nav>
+        
+        <!-- 移动端菜单按钮 -->
+        <div class="md:hidden">
+          <button id="menu-toggle" class="text-neutral-600 hover:text-primary focus:outline-none">
+            <i class="fa-solid fa-bars text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 移动端导航菜单 -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-neutral-200">
+      <div class="container mx-auto px-4 py-3 space-y-3">
+        <a href="#intro" class="block text-neutral-600 hover:text-primary font-medium py-2 transition-custom">产品简介</a>
+        <a href="#scope" class="block text-neutral-600 hover:text-primary font-medium py-2 transition-custom">适用范围</a>
+        <a href="#purchase" class="block text-neutral-600 hover:text-primary font-medium py-2 transition-custom">购买方式</a>
+        <a href="#usage" class="block text-neutral-600 hover:text-primary font-medium py-2 transition-custom">使用方法</a>
+        <a href="#safety" class="block text-neutral-600 hover:text-primary font-medium py-2 transition-custom">安全注意事项</a>
+        <a href="#service" class="block text-neutral-600 hover:text-primary font-medium py-2 transition-custom">售后服务</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 英雄区域 -->
+  <section class="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-br from-primary/5 to-secondary/5">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="w-full md:w-1/2 mb-10 md:mb-0">
+          <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-neutral-900 leading-tight mb-4">
+            专业厨房工具<br>
+            <span class="text-primary">H丁H组合刀具</span>
+          </h1>
+          <p class="text-lg md:text-xl text-neutral-600 mb-8 max-w-lg">
+            创新设计，高效省力，为您带来专业级的厨房体验。
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="#intro" class="px-8 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-custom shadow-lg hover:shadow-xl hover:-translate-y-1">
+              了解产品
             </a>
-            
-            <!-- 桌面导航 -->
-            <nav class="hidden md:flex items-center space-x-8">
-                <a href="#about" class="text-neutral-600 hover:text-primary transition-colors">关于我们</a>
-                <a href="#product" class="text-neutral-600 hover:text-primary transition-colors">产品特点</a>
-                <a href="#usage" class="text-neutral-600 hover:text-primary transition-colors">使用方法</a>
-                <a href="#safety" class="text-neutral-600 hover:text-primary transition-colors">安全须知</a>
-                <a href="#service" class="text-neutral-600 hover:text-primary transition-colors">售后服务</a>
-                <a href="#contact" class="bg-primary text-white px-5 py-2 rounded-full hover:bg-primary/90 transition-all shadow-md hover:shadow-lg">立即购买</a>
-            </nav>
-            
-            <!-- 移动端菜单按钮 -->
-            <button id="menuBtn" class="md:hidden text-neutral-800 focus:outline-none">
-                <i class="fa-solid fa-bars text-xl"></i>
+            <a href="#service" class="px-8 py-3 bg-white text-primary border border-primary rounded-lg font-medium hover:bg-primary/5 transition-custom shadow-md hover:shadow-lg hover:-translate-y-1">
+              联系客服
+            </a>
+          </div>
+        </div>
+        <div class="w-full md:w-1/2 relative">
+          <div class="relative z-10 rounded-xl overflow-hidden shadow-2xl transform md:rotate-2 hover:rotate-0 transition-all duration-500">
+            <img src="图片/292_800_600.jpg" alt="H丁H组合刀具展示" class="w-full h-auto">
+          </div>
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/20 rounded-xl -z-10 transform rotate-6"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 产品简介 -->
+  <section id="intro" class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-neutral-900 mb-4">产品简介</h2>
+        <p class="text-lg text-neutral-600 max-w-2xl mx-auto">H丁H组合刀具是拥有专利技术的创新型厨房工具，专注于各类食材的细碎处理，为您带来高效省力的烹饪体验。</p>
+      </div>
+      
+      <!-- 手动刀具VS电动工具 -->
+      <div class="bg-neutral-50 rounded-2xl p-8 mb-16 shadow-lg">
+        <h3 class="text-2xl font-bold text-neutral-800 mb-6 flex items-center">
+          <i class="fa-solid fa-scissors text-primary mr-3"></i>
+          手动刀具 VS 电动工具
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-white p-6 rounded-xl shadow-md hover-lift">
+            <h4 class="text-xl font-semibold text-primary mb-4">刀切肉</h4>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <i class="fa-solid fa-check-circle text-secondary mt-1 mr-2"></i>
+                <span>保留完整纹理，咀嚼有层次感</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-check-circle text-secondary mt-1 mr-2"></i>
+                <span>颗粒感强，适合需口感层次菜肴</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-check-circle text-secondary mt-1 mr-2"></i>
+                <span>纤维未过度破坏，肉馅弹性更佳</span>
+              </li>
+            </ul>
+          </div>
+          <div class="bg-white p-6 rounded-xl shadow-md hover-lift">
+            <h4 class="text-xl font-semibold text-primary mb-4">绞肉机打肉</h4>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <i class="fa-solid fa-check-circle text-secondary mt-1 mr-2"></i>
+                <span>质地细腻均匀，几乎无纤维感</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-check-circle text-secondary mt-1 mr-2"></i>
+                <span>黏合性好，适合需细腻质地食物</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa-solid fa-check-circle text-secondary mt-1 mr-2"></i>
+                <span>口感软绵，适合特定人群及料理</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 多元使用场景 -->
+      <div class="mb-16">
+        <h3 class="text-2xl font-bold text-neutral-800 mb-6 flex items-center">
+          <i class="fa-solid fa-utensils text-primary mr-3"></i>
+          多元使用场景
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white rounded-xl overflow-hidden shadow-md hover-lift">
+            <img src="图片/431_600_400.jpg" alt="制作馅料" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <h4 class="text-xl font-semibold text-neutral-800 mb-2">制作馅料</h4>
+              <p class="text-neutral-600">轻松制作饺子馅、包子馅等各类馅料，保持食材原有口感。</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl overflow-hidden shadow-md hover-lift">
+            <img src="图片/139_600_400.jpg" alt="调味料制作" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <h4 class="text-xl font-semibold text-neutral-800 mb-2">调味料制作</h4>
+              <p class="text-neutral-600">快速将大蒜、辣椒、姜等剁成碎末，制作各类调味料。</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl overflow-hidden shadow-md hover-lift">
+            <img src="图片/174_600_400.jpg" alt="辅食制作" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <h4 class="text-xl font-semibold text-neutral-800 mb-2">辅食制作</h4>
+              <p class="text-neutral-600">为宝宝制作细腻的辅食，安全健康，让妈妈更放心。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 核心价值与市场定位 -->
+      <div class="mb-16">
+        <h3 class="text-2xl font-bold text-neutral-800 mb-6 flex items-center">
+          <i class="fa-solid fa-diamond text-primary mr-3"></i>
+          核心价值与市场定位
+        </h3>
+        <div class="bg-white rounded-xl shadow-lg p-8">
+          <div class="flex flex-col md:flex-row gap-8">
+            <div class="md:w-1/2">
+              <h4 class="text-xl font-semibold text-primary mb-4">核心价值</h4>
+              <p class="text-neutral-600 mb-6">我们秉承"轻便、高效、安全"的理念，致力于为现代家庭打造专业级厨房工具，让烹饪成为一种享受而非负担。</p>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="bg-primary/5 rounded-lg p-4 text-center hover-lift">
+                  <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
+                    <i class="fa-solid fa-balance-scale text-primary text-xl"></i>
+                  </div>
+                  <h5 class="font-medium text-neutral-800 mb-1">轻便</h5>
+                  <p class="text-sm text-neutral-600">创新设计，减轻重量，操作轻松</p>
+                </div>
+                <div class="bg-primary/5 rounded-lg p-4 text-center hover-lift">
+                  <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
+                    <i class="fa-solid fa-bolt text-primary text-xl"></i>
+                  </div>
+                  <h5 class="font-medium text-neutral-800 mb-1">高效</h5>
+                  <p class="text-sm text-neutral-600">专业刀片，快速处理，节省时间</p>
+                </div>
+                <div class="bg-primary/5 rounded-lg p-4 text-center hover-lift">
+                  <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
+                    <i class="fa-solid fa-shield text-primary text-xl"></i>
+                  </div>
+                  <h5 class="font-medium text-neutral-800 mb-1">安全</h5>
+                  <p class="text-sm text-neutral-600">多重防护，避免伤害，使用放心</p>
+                </div>
+              </div>
+              
+              <div class="mt-6">
+                <h4 class="text-xl font-semibold text-primary mb-4">专利技术</h4>
+                <p class="text-neutral-600">H丁H组合刀具拥有多项国家专利技术，独特的三片式刀片组合设计和镂空刀片结构，在同类产品中占据技术领先地位。</p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <span class="inline-block px-3 py-1 bg-neutral-100 text-neutral-700 rounded-full text-sm">专利号：ZL2023XXXXXX.1</span>
+                  <span class="inline-block px-3 py-1 bg-neutral-100 text-neutral-700 rounded-full text-sm">专利号：ZL2023XXXXXX.2</span>
+                  <span class="inline-block px-3 py-1 bg-neutral-100 text-neutral-700 rounded-full text-sm">专利号：ZL2023XXXXXX.3</span>
+                </div>
+              </div>
+            </div>
+            <div class="md:w-1/2">
+              <h4 class="text-xl font-semibold text-primary mb-4">市场定位</h4>
+              <p class="text-neutral-600 mb-6">作为中高端手动厨房工具的领军品牌，我们精准定位追求品质生活的消费群体，为其提供专业、创新、实用的厨房解决方案。</p>
+              
+              <div class="space-y-6">
+                <div>
+                  <div class="flex justify-between mb-2">
+                    <span class="font-medium text-neutral-800">家庭主妇</span>
+                    <span class="text-primary font-medium">40%</span>
+                  </div>
+                  <div class="h-3 bg-neutral-200 rounded-full overflow-hidden">
+                    <div class="h-full bg-primary rounded-full" style="width: 40%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-2">
+                    <span class="font-medium text-neutral-800">烹饪爱好者</span>
+                    <span class="text-primary font-medium">30%</span>
+                  </div>
+                  <div class="h-3 bg-neutral-200 rounded-full overflow-hidden">
+                    <div class="h-full bg-primary rounded-full" style="width: 30%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-2">
+                    <span class="font-medium text-neutral-800">健康饮食追求者</span>
+                    <span class="text-primary font-medium">20%</span>
+                  </div>
+                  <div class="h-3 bg-neutral-200 rounded-full overflow-hidden">
+                    <div class="h-full bg-primary rounded-full" style="width: 20%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between mb-2">
+                    <span class="font-medium text-neutral-800">其他</span>
+                    <span class="text-primary font-medium">10%</span>
+                  </div>
+                  <div class="h-3 bg-neutral-200 rounded-full overflow-hidden">
+                    <div class="h-full bg-primary rounded-full" style="width: 10%"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="mt-8">
+                <h4 class="text-xl font-semibold text-primary mb-4">用户评价</h4>
+                <div class="bg-neutral-50 rounded-lg p-4 border border-neutral-200">
+                  <div class="flex items-center mb-3">
+                    <div class="text-yellow-400 flex">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                    <span class="ml-2 text-sm text-neutral-500">5.0 (1200+评价)</span>
+                  </div>
+                  <p class="text-neutral-600 italic">"这款刀具真的很实用，剁肉轻松不费劲，而且清洗也很方便，非常推荐给各位家庭主妇！"</p>
+                  <div class="mt-3 flex items-center">
+                    <img src="图片/64_40_40.jpg" alt="用户头像" class="w-8 h-8 rounded-full mr-2">
+                    <span class="text-sm font-medium text-neutral-800">李女士</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 精准分类设计 -->
+      <div>
+        <h3 class="text-2xl font-bold text-neutral-800 mb-6 flex items-center">
+          <i class="fa-solid fa-tags text-primary mr-3"></i>
+          精准分类设计
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-xl shadow-md p-6 hover-lift">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mr-4">
+                <i class="fa-solid fa-drumstick-bite text-red-500 text-xl"></i>
+              </div>
+              <h4 class="text-xl font-semibold text-neutral-800">肉类专用刀</h4>
+            </div>
+            <p class="text-neutral-600 mb-4">专为去骨肉类设计（严禁处理含骨头的肉类，以免损坏刀片），轻松将猪肉、牛肉、鸡肉等剁成细腻肉糜，满足制作肉饼、肉丸等食材需求。</p>
+            <img src="图片/365_600_300.jpg" alt="肉类专用刀" class="w-full h-40 object-cover rounded-lg">
+          </div>
+          <div class="bg-white rounded-xl shadow-md p-6 hover-lift">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                <i class="fa-solid fa-leaf text-green-500 text-xl"></i>
+              </div>
+              <h4 class="text-xl font-semibold text-neutral-800">蔬果干货刀</h4>
+            </div>
+            <p class="text-neutral-600 mb-4">适用于大蒜籽、辣椒、花生米、核桃肉、各类去壳干果、姜、葱、蒜、萝卜等食材，可快速将其剁成碎末或颗粒状，助力调味料制作与食材预处理。</p>
+            <img src="图片/292_600_300.jpg" alt="蔬果干货刀" class="w-full h-40 object-cover rounded-lg">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 购买板块 -->
+  <section id="purchase" class="py-16 md:py-24 bg-neutral-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-neutral-900 mb-4">购买方式</h2>
+        <p class="text-lg text-neutral-600 max-w-2xl mx-auto">H丁H组合刀具已在多家电商平台上线，您可以选择以下方式购买我们的产品。</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- 淘宝店铺 -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover-lift">
+          <div class="h-48 bg-[#FF4400] flex items-center justify-center">
+            <i class="fa-brands fa-taobao text-white text-8xl"></i>
+          </div>
+          <div class="p-8">
+            <h3 class="text-2xl font-bold text-neutral-800 mb-4">淘宝旗舰店</h3>
+            <p class="text-neutral-600 mb-6">访问我们的淘宝旗舰店，享受官方正品保障，多种优惠活动和专业客服服务。</p>
+            <div class="flex items-center justify-between">
+              <span class="text-xl font-bold text-primary">月销 2000+</span>
+              <a href="#" class="px-6 py-3 bg-[#FF4400] text-white rounded-lg font-medium hover:bg-[#FF4400]/90 transition-custom shadow-md hover:shadow-lg">
+                立即购买
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 拼多多店铺 -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover-lift">
+          <div class="h-48 bg-[#FF3600] flex items-center justify-center">
+            <i class="fa-brands fa-shopee text-white text-8xl"></i>
+          </div>
+          <div class="p-8">
+            <h3 class="text-2xl font-bold text-neutral-800 mb-4">拼多多旗舰店</h3>
+            <p class="text-neutral-600 mb-6">拼多多限时优惠，价格更实惠，品质不打折，极速发货，让您早日体验优质刀具。</p>
+            <div class="flex items-center justify-between">
+              <span class="text-xl font-bold text-primary">月销 3500+</span>
+              <a href="#" class="px-6 py-3 bg-[#FF3600] text-white rounded-lg font-medium hover:bg-[#FF3600]/90 transition-custom shadow-md hover:shadow-lg">
+                立即购买
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 抖音店铺 -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover-lift">
+          <div class="h-48 bg-black flex items-center justify-center">
+            <i class="fa-brands fa-tiktok text-white text-8xl"></i>
+          </div>
+          <div class="p-8">
+            <h3 class="text-2xl font-bold text-neutral-800 mb-4">抖音直播间</h3>
+            <p class="text-neutral-600 mb-6">关注我们的抖音直播间，观看产品使用演示，参与互动抽奖，获取更多优惠。</p>
+            <div class="flex items-center justify-between">
+              <span class="text-xl font-bold text-primary">月销 5000+</span>
+              <a href="#" class="px-6 py-3 bg-black text-white rounded-lg font-medium hover:bg-neutral-900 transition-custom shadow-md hover:shadow-lg">
+                立即购买
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 优惠活动 -->
+      <div class="mt-16 bg-white rounded-2xl shadow-lg p-8">
+        <h3 class="text-2xl font-bold text-neutral-800 mb-6 text-center">限时优惠活动</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-primary/5 rounded-xl p-6 text-center hover-lift">
+            <div class="text-4xl font-bold text-primary mb-2">9折</div>
+            <p class="text-neutral-700">全场商品9折优惠</p>
+            <p class="text-sm text-neutral-500 mt-2">活动截止日期：2025年5月31日</p>
+          </div>
+          <div class="bg-primary/5 rounded-xl p-6 text-center hover-lift">
+            <div class="text-4xl font-bold text-primary mb-2">买赠</div>
+            <p class="text-neutral-700">购买即送专用磨刀石</p>
+            <p class="text-sm text-neutral-500 mt-2">数量有限，先到先得</p>
+          </div>
+          <div class="bg-primary/5 rounded-xl p-6 text-center hover-lift">
+            <div class="text-4xl font-bold text-primary mb-2">包邮</div>
+            <p class="text-neutral-700">全国满99元包邮</p>
+            <p class="text-sm text-neutral-500 mt-2">偏远地区除外</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 适用范围 -->
+  <section id="scope" class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-neutral-900 mb-4">适用范围</h2>
+        <p class="text-lg text-neutral-600 max-w-2xl mx-auto">精心设计的刀片组合适用于多种去骨、去壳、无硬核的非骨性软性食材。</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <!-- 适用食材 -->
+        <div class="bg-white rounded-2xl shadow-lg p-8 hover-lift">
+          <h3 class="text-2xl font-bold text-neutral-800 mb-6 flex items-center">
+            <i class="fa-solid fa-check-circle text-secondary mr-3"></i>
+            适用食材
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="flex items-center">
+              <i class="fa-solid fa-circle text-primary/20 text-3xl mr-3"></i>
+              <span>去骨猪牛羊肉</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fa-solid fa-circle text-primary/20 text-3xl mr-3"></i>
+              <span>鸡鸭鱼肉</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fa-solid fa-circle text-primary/20 text-3xl mr-3"></i>
+              <span>萝卜、姜、葱、蒜</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fa-solid fa-circle text-primary/20 text-3xl mr-3"></i>
+              <span>辣椒</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fa-solid fa-circle text-primary/20 text-3xl mr-3"></i>
+              <span>香菜、洋葱、香茅</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fa-solid fa-circle text-primary/20 text-3xl mr-3"></i>
+              <span>去壳花生、核桃</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fa-solid fa-circle text-primary/20 text-3xl mr-3"></i>
+              <span>杏仁等坚果</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 禁用食材 -->
+        <div class="bg-white rounded-2xl shadow-lg p-8 hover-lift">
+          <h3 class="text-2xl font-bold text-neutral-800 mb-6 flex items-center">
+            <i class="fa-solid fa-ban text-red-500 mr-3"></i>
+            禁用食材
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="flex items-center">
+              <i class="fa-solid fa-circle text-red-100 text-3xl mr-3"></i>
+              <span>骨头</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fa-solid fa-circle text-red-100 text-3xl mr-3"></i>
+              <span>贝壳</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fa-solid fa-circle text-red-100 text-3xl mr-3"></i>
+              <span>坚果硬核</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fa-solid fa-circle text-red-100 text-3xl mr-3"></i>
+              <span>金属</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fa-solid fa-circle text-red-100 text-3xl mr-3"></i>
+              <span>未解冻的冰冻食材</span>
+            </div>
+            <div class="flex items-center">
+              <i class="fa-solid fa-circle text-red-100 text-3xl mr-3"></i>
+              <span>石子</span>
+            </div>
+          </div>
+          <p class="mt-6 text-red-600 font-medium">
+            <i class="fa-solid fa-exclamation-triangle mr-2"></i>
+            违规使用可能导致刀片损坏，甚至引发安全事故。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 使用方法 -->
+  <section id="usage" class="py-16 md:py-24 bg-neutral-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-neutral-900 mb-4">使用方法</h2>
+        <p class="text-lg text-neutral-600 max-w-2xl mx-auto">简单几步，轻松掌握H丁H组合刀具的使用方法，让您的烹饪更加高效便捷。</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+        <!-- 食材预处理 -->
+        <div>
+          <h3 class="text-2xl font-bold text-neutral-800 mb-6 flex items-center">
+            <i class="fa-solid fa-cutlery text-primary mr-3"></i>
+            食材预处理
+          </h3>
+          <div class="space-y-6">
+            <div class="flex">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold mr-4">1</div>
+              <div>
+                <h4 class="text-xl font-semibold text-neutral-800 mb-2">清洁处理</h4>
+                <p class="text-neutral-600">将食材彻底洗净，去除骨、壳、硬核等不可食用部分，根据刀具入口大小，将食材切成合适的块状或条状。</p>
+              </div>
+            </div>
+            <div class="flex">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold mr-4">2</div>
+              <div>
+                <h4 class="text-xl font-semibold text-neutral-800 mb-2">安全操作</h4>
+                <p class="text-neutral-600">紧握刀具手柄，建议佩戴随附的防切割手套，以匀速方式推送食材进行切割，切勿用力过猛或强行按压，以免发生危险。</p>
+              </div>
+            </div>
+            <div class="flex">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold mr-4">3</div>
+              <div>
+                <h4 class="text-xl font-semibold text-neutral-800 mb-2">及时清理</h4>
+                <p class="text-neutral-600">每次使用完毕后，应及时清理刀片及刀架内残留的食材，保持刀具清洁。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 清洁与保养 -->
+        <div>
+          <h3 class="text-2xl font-bold text-neutral-800 mb-6 flex items-center">
+            <i class="fa-solid fa-brush text-primary mr-3"></i>
+            清洁与保养
+          </h3>
+          <div class="space-y-6">
+            <div class="flex">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white font-bold mr-4">1</div>
+              <div>
+                <h4 class="text-xl font-semibold text-neutral-800 mb-2">日常清洁</h4>
+                <p class="text-neutral-600">使用温水搭配中性洗涤剂，配合专用刷子仔细刷洗刀片、刀架及手柄，确保无食材残留。注意避免使用钢丝球等硬质清洁工具，以免损伤刀具表面。</p>
+              </div>
+            </div>
+            <div class="flex">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white font-bold mr-4">2</div>
+              <div>
+                <h4 class="text-xl font-semibold text-neutral-800 mb-2">专业保养</h4>
+                <p class="text-neutral-600">本品配备专用磨刀石，定期对刀片进行打磨（建议每月一次），可保持刀片锋利度，延长使用寿命。打磨时需按照正确方法操作，避免划伤手部。</p>
+              </div>
+            </div>
+            <div class="flex">
+              <div class="flex-shrink-0 w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white font-bold mr-4">3</div>
+              <div>
+                <h4 class="text-xl font-semibold text-neutral-800 mb-2">收纳存放</h4>
+                <p class="text-neutral-600">清洁干燥后，将刀具放置于儿童接触不到的干燥通风处，建议使用随附的专用刀架或收纳盒，确保安全收纳。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 使用视频 -->
+      <div class="mt-16 bg-white rounded-2xl p-8 shadow-lg">
+        <h3 class="text-2xl font-bold text-neutral-800 mb-6 flex items-center">
+          <i class="fa-solid fa-video text-primary mr-3"></i>
+          使用教程视频
+        </h3>
+        <div class="relative rounded-xl overflow-hidden aspect-video shadow-xl">
+          <img src="https://picsum.photos/id/315/1200/675" alt="使用教程视频封面" class="w-full h-full object-cover">
+          <div class="absolute inset-0 flex items-center justify-center">
+            <button class="w-20 h-20 rounded-full bg-primary/80 flex items-center justify-center text-white hover:bg-primary transition-custom">
+              <i class="fa-solid fa-play text-2xl"></i>
             </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 安全注意事项 -->
+  <section id="safety" class="py-16 md:py-24 bg-gradient-to-br from-red-50 to-primary-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-neutral-900 mb-4">安全注意事项</h2>
+        <p class="text-lg text-neutral-600 max-w-2xl mx-auto">为了您的安全，请务必遵守以下使用规则，正确使用和维护H丁H组合刀具。</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="bg-white rounded-xl p-6 shadow-md hover-lift">
+          <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mb-6 mx-auto">
+            <i class="fa-solid fa-child text-red-500 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-neutral-800 text-center mb-4">儿童监护</h3>
+          <p class="text-neutral-600 text-center">请将刀具放置于儿童无法触及的位置，避免儿童接触玩耍，防止意外事故发生。</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 shadow-md hover-lift">
+          <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mb-6 mx-auto">
+            <i class="fa-solid fa-shield-halved text-red-500 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-neutral-800 text-center mb-4">操作安全</h3>
+          <p class="text-neutral-600 text-center">刀具使用及清理过程中，切勿直接触碰刀片。若为电动款（如有），清理前需先断电，待刀片完全停止转动后再进行操作。</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 shadow-md hover-lift">
+          <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mb-6 mx-auto">
+            <i class="fa-solid fa-triangle-exclamation text-red-500 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-neutral-800 text-center mb-4">异常处理</h3>
+          <p class="text-neutral-600 text-center">使用过程中，若出现刀片卡顿、异常声响或其他故障，应立即停止使用，断开电源（电动款）并联系售后服务中心检修，严禁自行拆解刀具，以免造成不必要的伤害。</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 shadow-md hover-lift">
+          <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mb-6 mx-auto">
+            <i class="fa-solid fa-calendar-check text-red-500 text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-neutral-800 text-center mb-4">定期检查</h3>
+          <p class="text-neutral-600 text-center">建议定期（每季度一次）检查刀具各部件，如发现刀片钝化、螺丝松动或其他部件磨损情况，应及时更换或处理。刀片钝化时，可使用专用磨刀石进行打磨，若磨损严重需联系售后更换新刀片。</p>
+        </div>
+      </div>
+      
+      <div class="mt-12 bg-white rounded-2xl p-8 shadow-lg">
+        <div class="flex items-center mb-4">
+          <i class="fa-solid fa-exclamation-circle text-red-500 text-2xl mr-3"></i>
+          <h3 class="text-xl font-bold text-neutral-800">重要提示</h3>
+        </div>
+        <p class="text-neutral-600 mb-4">为保障您的安全和刀具的使用寿命，请务必严格按照使用说明书进行操作。如因违规使用导致的任何损失，本公司将不承担相应责任。</p>
+        <div class="flex justify-center mt-6">
+          <a href="#" class="px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-custom shadow-md hover:shadow-lg">
+            下载完整使用说明书
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 售后服务 -->
+  <section id="service" class="py-16 md:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-neutral-900 mb-4">售后服务</h2>
+        <p class="text-lg text-neutral-600 max-w-2xl mx-auto">我们致力于为您提供优质的产品和服务，让您无后顾之忧。</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- 质保政策 -->
+        <div class="bg-white rounded-xl p-8 shadow-md border border-neutral-200 hover-lift">
+          <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+            <i class="fa-solid fa-shield-check text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-neutral-800 mb-4">质保政策</h3>
+          <p class="text-neutral-600 mb-4">自购买之日起，本品提供 5 年超长质保服务（因处理禁用硬质物体导致的损坏除外）。质保期内，若出现非人为质量问题，我们将免费提供维修或更换服务。</p>
+          <div class="mt-6 text-center">
+            <span class="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full font-medium">5年质保</span>
+          </div>
         </div>
         
-        <!-- 移动端导航菜单 -->
-        <div id="mobileMenu" class="md:hidden hidden bg-white shadow-lg absolute w-full">
-            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
-                <a href="#about" class="text-neutral-600 hover:text-primary py-2 transition-colors">关于我们</a>
-                <a href="#product" class="text-neutral-600 hover:text-primary py-2 transition-colors">产品特点</a>
-                <a href="#usage" class="text-neutral-600 hover:text-primary py-2 transition-colors">使用方法</a>
-                <a href="#safety" class="text-neutral-600 hover:text-primary py-2 transition-colors">安全须知</a>
-                <a href="#service" class="text-neutral-600 hover:text-primary py-2 transition-colors">售后服务</a>
-                <a href="#contact" class="bg-primary text-white px-5 py-2 rounded-full hover:bg-primary/90 transition-all text-center shadow-md">立即购买</a>
-            </div>
+        <!-- 退换货政策 -->
+        <div class="bg-white rounded-xl p-8 shadow-md border border-neutral-200 hover-lift">
+          <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+            <i class="fa-solid fa-rotate-right text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-neutral-800 mb-4">退换货政策</h3>
+          <p class="text-neutral-600 mb-4">为保障您的购物权益，自收到商品之日起 30 天内，若商品未拆封且不影响二次销售，可享受无理由退换货服务。请确保包装完整，配件齐全，并联系客服获取退换货指引。</p>
+          <div class="mt-6 text-center">
+            <span class="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full font-medium">30天无理由退换</span>
+          </div>
         </div>
-    </header>
-
-    <main>
-        <!-- 英雄区域 -->
-        <section class="relative h-screen flex items-center overflow-hidden">
-            <div class="absolute inset-0 z-0">
-                <img src="images/431_1920_1080.jpg" alt="厨房刀具展示" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-black/50"></div>
-            </div>
-            <div class="container mx-auto px-4 relative z-10">
-                <div class="max-w-2xl animate-fade-in">
-                    <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold text-white leading-tight text-shadow mb-6">
-                        H丁H组合刀具<br>专业厨房切割解决方案
-                    </h1>
-                    <p class="text-[clamp(1rem,2vw,1.25rem)] text-white/90 mb-8 max-w-xl">
-                        创新三片式刀片设计，轻松应对各种食材处理需求，让您的烹饪体验更加高效、安全、愉悦。
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#product" class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-medium transition-all shadow-lg hover:shadow-xl">
-                            了解产品 <i class="fa-solid fa-arrow-right ml-2"></i>
-                        </a>
-                        <a href="#contact" class="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border border-white/30 px-8 py-3 rounded-full font-medium transition-all">
-                            联系我们
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-                <a href="#about" class="text-white/80 hover:text-white transition-colors">
-                    <i class="fa-solid fa-chevron-down text-2xl"></i>
-                </a>
-            </div>
-        </section>
-
-        <!-- 关于我们 -->
-        <section id="about" class="py-20 bg-white">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16">
-                    <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-neutral-800 mb-4">关于我们的刀具</h2>
-                    <p class="text-neutral-600 max-w-2xl mx-auto">在人类的饮食文化长河中，厨房器具的演变承载着人类文明发展的印记。H丁H组合刀具致力于传承与创新，为您带来卓越的厨房体验。</p>
-                </div>
-                
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="order-2 md:order-1">
-                        <h3 class="text-2xl font-bold text-neutral-800 mb-6">创新设计，卓越性能</h3>
-                        <p class="text-neutral-600 mb-6">H丁H组合刀具是拥有专利技术的创新型厨房工具，作为专业剁刀，专注于各类食材的细碎处理。采用三片式刀片组合设计，独特的镂空刀片结构不仅减轻了刀具重量，更能实现食材的顺畅排料，带来高效省力的烹饪体验。</p>
-                        
-                        <div class="space-y-4 mb-8">
-                            <div class="flex items-start">
-                                <div class="bg-primary/10 p-3 rounded-full mr-4">
-                                    <i class="fa-solid fa-certificate text-primary"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-neutral-800 mb-1">专利技术</h4>
-                                    <p class="text-neutral-600">独特的三片式刀片组合设计，为您带来专业级的切割体验。</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="bg-primary/10 p-3 rounded-full mr-4">
-                                    <i class="fa-solid fa-bolt text-primary"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-neutral-800 mb-1">高效省力</h4>
-                                    <p class="text-neutral-600">镂空刀片结构减轻重量，排料顺畅，让烹饪更加轻松。</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="bg-primary/10 p-3 rounded-full mr-4">
-                                    <i class="fa-solid fa-shield text-primary"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-neutral-800 mb-1">安全保障</h4>
-                                    <p class="text-neutral-600">多重安全设计，让您使用更加放心。</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <a href="#product" class="inline-flex items-center text-primary font-medium hover:text-primary/80 transition-colors">
-                            了解更多产品特点 <i class="fa-solid fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="order-1 md:order-2 relative">
-                        <img src="images/292_800_600.jpg" alt="H丁H组合刀具" class="rounded-lg shadow-xl w-full object-cover h-[400px] md:h-[500px]">
-                        <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg animate-pulse-slow">
-                            <div class="flex items-center">
-                                <div class="bg-primary/10 p-2 rounded-full mr-3">
-                                    <i class="fa-solid fa-award text-primary"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm font-bold">专业认证</p>
-                                    <p class="text-xs text-neutral-500">品质保证</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 产品特点 -->
-        <section id="product" class="py-20 bg-neutral-100">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16">
-                    <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-neutral-800 mb-4">产品特点</h2>
-                    <p class="text-neutral-600 max-w-2xl mx-auto">H丁H组合刀具为您带来专业级厨房解决方案，满足多样化的烹饪需求。</p>
-                </div>
-                
-                <!-- 手动刀具 VS 电动工具 -->
-                <div class="bg-white rounded-xl shadow-lg p-8 mb-16 transform transition-all duration-500 hover:shadow-xl">
-                    <h3 class="text-2xl font-bold text-neutral-800 mb-6 text-center">手动刀具 VS 电动工具</h3>
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div class="p-6 bg-primary/5 rounded-lg border border-primary/20">
-                            <h4 class="font-bold text-primary text-xl mb-4 flex items-center">
-                                <i class="fa-solid fa-cutlery mr-2"></i> 刀切肉
-                            </h4>
-                            <ul class="space-y-3">
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-primary mt-1 mr-3"></i>
-                                    <span>保留完整纹理，咀嚼有层次感</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-primary mt-1 mr-3"></i>
-                                    <span>颗粒感强，适合需口感层次菜肴</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-primary mt-1 mr-3"></i>
-                                    <span>纤维未过度破坏，肉馅弹性更佳</span>
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <div class="p-6 bg-neutral-50 rounded-lg border border-neutral-200">
-                            <h4 class="font-bold text-neutral-800 text-xl mb-4 flex items-center">
-                                <i class="fa-solid fa-blender mr-2"></i> 绞肉机打肉
-                            </h4>
-                            <ul class="space-y-3">
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-neutral-600 mt-1 mr-3"></i>
-                                    <span>质地细腻均匀，几乎无纤维感</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-neutral-600 mt-1 mr-3"></i>
-                                    <span>黏合性好，适合需细腻质地食物</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-neutral-600 mt-1 mr-3"></i>
-                                    <span>口感软绵，适合特定人群及料理</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 多元使用场景 -->
-                <div class="mb-16">
-                    <h3 class="text-2xl font-bold text-neutral-800 mb-8 text-center">多元使用场景</h3>
-                    <div class="grid md:grid-cols-3 gap-6">
-                        <div class="bg-white rounded-xl shadow-md p-6 card-hover">
-                            <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
-                                <i class="fa-solid fa-drumstick-bite text-primary text-2xl"></i>
-                            </div>
-                            <h4 class="font-bold text-neutral-800 text-xl mb-3 text-center">肉类处理</h4>
-                            <p class="text-neutral-600 text-center">轻松将猪肉、牛肉、鸡肉等剁成细腻肉糜，满足制作肉饼、肉丸等食材需求。</p>
-                        </div>
-                        
-                        <div class="bg-white rounded-xl shadow-md p-6 card-hover">
-                            <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
-                                <i class="fa-solid fa-leaf text-primary text-2xl"></i>
-                            </div>
-                            <h4 class="font-bold text-neutral-800 text-xl mb-3 text-center">蔬果处理</h4>
-                            <p class="text-neutral-600 text-center">适用于大蒜籽、辣椒、姜、葱、蒜、萝卜等食材，可快速将其剁成碎末或颗粒状。</p>
-                        </div>
-                        
-                        <div class="bg-white rounded-xl shadow-md p-6 card-hover">
-                            <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
-                                <i class="fa-solid fa-nut text-primary text-2xl"></i>
-                            </div>
-                            <h4 class="font-bold text-neutral-800 text-xl mb-3 text-center">坚果研磨</h4>
-                            <p class="text-neutral-600 text-center">可处理去壳花生、核桃、杏仁等坚果（需去除硬核），助力调味料制作与食材预处理。</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 精准分类设计 -->
-                <div>
-                    <h3 class="text-2xl font-bold text-neutral-800 mb-8 text-center">精准分类设计</h3>
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
-                            <img src="images/312_600_400.jpg" alt="肉类专用刀" class="w-full h-48 object-cover">
-                            <div class="p-6">
-                                <h4 class="font-bold text-neutral-800 text-xl mb-3">肉类专用刀</h4>
-                                <p class="text-neutral-600 mb-4">专为去骨肉类设计（严禁处理含骨头的肉类，以免损坏刀片），轻松将猪肉、牛肉、鸡肉等剁成细腻肉糜，满足制作肉饼、肉丸等食材需求。</p>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="bg-primary/10 text-primary text-xs px-3 py-1 rounded-full">猪肉</span>
-                                    <span class="bg-primary/10 text-primary text-xs px-3 py-1 rounded-full">牛肉</span>
-                                    <span class="bg-primary/10 text-primary text-xs px-3 py-1 rounded-full">鸡肉</span>
-                                    <span class="bg-primary/10 text-primary text-xs px-3 py-1 rounded-full">鱼肉</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
-                            <img src="images/1080_600_400.jpg" alt="蔬果干货刀" class="w-full h-48 object-cover">
-                            <div class="p-6">
-                                <h4 class="font-bold text-neutral-800 text-xl mb-3">蔬果干货刀</h4>
-                                <p class="text-neutral-600 mb-4">适用于大蒜籽、辣椒、花生米、核桃肉、各类去壳干果、姜、葱、蒜、萝卜等食材，可快速将其剁成碎末或颗粒状，助力调味料制作与食材预处理。</p>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="bg-primary/10 text-primary text-xs px-3 py-1 rounded-full">大蒜</span>
-                                    <span class="bg-primary/10 text-primary text-xs px-3 py-1 rounded-full">辣椒</span>
-                                    <span class="bg-primary/10 text-primary text-xs px-3 py-1 rounded-full">坚果</span>
-                                    <span class="bg-primary/10 text-primary text-xs px-3 py-1 rounded-full">蔬菜</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 适用范围 -->
-        <section class="py-20 bg-white">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16">
-                    <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-neutral-800 mb-4">适用范围</h2>
-                    <p class="text-neutral-600 max-w-2xl mx-auto">H丁H组合刀具精心设计的刀片组合适用于多种去骨、去壳、无硬核的非骨性软性食材。</p>
-                </div>
-                
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <h3 class="text-2xl font-bold text-neutral-800 mb-6">适用食材</h3>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="bg-neutral-50 p-4 rounded-lg border border-neutral-200">
-                                <h4 class="font-bold text-neutral-800 mb-2 flex items-center">
-                                    <i class="fa-solid fa-drumstick-bite text-primary mr-2"></i> 肉类
-                                </h4>
-                                <ul class="text-neutral-600 space-y-1">
-                                    <li>• 去骨猪牛羊肉</li>
-                                    <li>• 鸡鸭鱼肉</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="bg-neutral-50 p-4 rounded-lg border border-neutral-200">
-                                <h4 class="font-bold text-neutral-800 mb-2 flex items-center">
-                                    <i class="fa-solid fa-leaf text-primary mr-2"></i> 蔬菜
-                                </h4>
-                                <ul class="text-neutral-600 space-y-1">
-                                    <li>• 萝卜</li>
-                                    <li>• 姜、葱、蒜</li>
-                                    <li>• 辣椒</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="bg-neutral-50 p-4 rounded-lg border border-neutral-200">
-                                <h4 class="font-bold text-neutral-800 mb-2 flex items-center">
-                                    <i class="fa-solid fa-seedling text-primary mr-2"></i> 香料
-                                </h4>
-                                <ul class="text-neutral-600 space-y-1">
-                                    <li>• 香菜</li>
-                                    <li>• 洋葱</li>
-                                    <li>• 香茅</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="bg-neutral-50 p-4 rounded-lg border border-neutral-200">
-                                <h4 class="font-bold text-neutral-800 mb-2 flex items-center">
-                                    <i class="fa-solid fa-nut text-primary mr-2"></i> 坚果
-                                </h4>
-                                <ul class="text-neutral-600 space-y-1">
-                                    <li>• 去壳花生</li>
-                                    <li>• 核桃、杏仁</li>
-                                    <li>• （需去除硬核）</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-2xl font-bold text-neutral-800 mb-6">禁用食材</h3>
-                        <div class="bg-red-50 border border-red-200 rounded-lg p-6">
-                            <div class="flex items-start mb-4">
-                                <div class="bg-red-100 p-3 rounded-full mr-4">
-                                    <i class="fa-solid fa-exclamation-triangle text-red-500"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-red-700 mb-2">重要安全提示</h4>
-                                    <p class="text-red-600">为保障使用安全及刀具寿命，严禁处理以下食材及物品，违规使用可能导致刀片损坏，甚至引发安全事故。</p>
-                                </div>
-                            </div>
-                            
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <h5 class="font-bold text-red-700 mb-2">硬性食材</h5>
-                                    <ul class="text-red-600 space-y-1">
-                                        <li>• 骨头</li>
-                                        <li>• 贝壳</li>
-                                        <li>• 坚果硬核</li>
-                                        <li>• （如核桃壳、榛子壳）</li>
-                                    </ul>
-                                </div>
-                                
-                                <div>
-                                    <h5 class="font-bold text-red-700 mb-2">特殊物品</h5>
-                                    <ul class="text-red-600 space-y-1">
-                                        <li>• 金属</li>
-                                        <li>• 未解冻的冰冻食材</li>
-                                        <li>• 石子</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 使用方法 -->
-        <section id="usage" class="py-20 bg-neutral-100">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16">
-                    <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-neutral-800 mb-4">使用方法</h2>
-                    <p class="text-neutral-600 max-w-2xl mx-auto">正确使用和保养H丁H组合刀具，能为您带来更长久的使用寿命和卓越的烹饪体验。</p>
-                </div>
-                
-                <div class="grid md:grid-cols-2 gap-12">
-                    <div>
-                        <h3 class="text-2xl font-bold text-neutral-800 mb-6">食材预处理</h3>
-                        
-                        <div class="space-y-6">
-                            <div class="bg-white rounded-lg shadow-md p-6 flex">
-                                <div class="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 mr-4">
-                                    <span class="font-bold">1</span>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-neutral-800 mb-2">清洁处理</h4>
-                                    <p class="text-neutral-600">将食材彻底洗净，去除骨、壳、硬核等不可食用部分，根据刀具入口大小，将食材切成合适的块状或条状。</p>
-                                </div>
-                            </div>
-                            
-                            <div class="bg-white rounded-lg shadow-md p-6 flex">
-                                <div class="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 mr-4">
-                                    <span class="font-bold">2</span>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-neutral-800 mb-2">安全操作</h4>
-                                    <p class="text-neutral-600">紧握刀具手柄，建议佩戴随附的防切割手套，以匀速方式推送食材进行切割，切勿用力过猛或强行按压，以免发生危险。</p>
-                                </div>
-                            </div>
-                            
-                            <div class="bg-white rounded-lg shadow-md p-6 flex">
-                                <div class="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 mr-4">
-                                    <span class="font-bold">3</span>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-neutral-800 mb-2">及时清理</h4>
-                                    <p class="text-neutral-600">每次使用完毕后，应及时清理刀片及刀架内残留的食材，保持刀具清洁。</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-2xl font-bold text-neutral-800 mb-6">清洁与保养</h3>
-                        
-                        <div class="space-y-6">
-                            <div class="bg-white rounded-lg shadow-md p-6 flex">
-                                <div class="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 mr-4">
-                                    <span class="font-bold">1</span>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-neutral-800 mb-2">日常清洁</h4>
-                                    <p class="text-neutral-600">使用温水搭配中性洗涤剂，配合专用刷子仔细刷洗刀片、刀架及手柄，确保无食材残留。注意避免使用钢丝球等硬质清洁工具，以免损伤刀具表面。</p>
-                                </div>
-                            </div>
-                            
-                            <div class="bg-white rounded-lg shadow-md p-6 flex">
-                                <div class="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 mr-4">
-                                    <span class="font-bold">2</span>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-neutral-800 mb-2">专业保养</h4>
-                                    <p class="text-neutral-600">本品配备专用磨刀石，定期对刀片进行打磨（建议每月一次），可保持刀片锋利度，延长使用寿命。打磨时需按照正确方法操作，避免划伤手部。</p>
-                                </div>
-                            </div>
-                            
-                            <div class="bg-white rounded-lg shadow-md p-6 flex">
-                                <div class="bg-primary text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 mr-4">
-                                    <span class="font-bold">3</span>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-neutral-800 mb-2">收纳存放</h4>
-                                    <p class="text-neutral-600">清洁干燥后，将刀具放置于儿童接触不到的干燥通风处，建议使用随附的专用刀架或收纳盒，确保安全收纳。</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="mt-16 bg-white rounded-xl shadow-lg p-8 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-40 h-40 bg-primary/5 rounded-bl-full"></div>
-                    <div class="flex flex-col md:flex-row items-center relative z-10">
-                        <div class="md:w-2/3 mb-8 md:mb-0 md:pr-8">
-                            <h3 class="text-2xl font-bold text-neutral-800 mb-4">观看使用教程</h3>
-                            <p class="text-neutral-600 mb-6">我们为您准备了详细的使用教程视频，帮助您快速掌握H丁H组合刀具的使用技巧。</p>
-                            <a href="#" class="inline-flex items-center bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-full font-medium transition-all shadow-md hover:shadow-lg">
-                                <i class="fa-solid fa-play-circle mr-2"></i> 观看视频教程
-                            </a>
-                        </div>
-                        <div class="md:w-1/3 bg-neutral-800 rounded-lg overflow-hidden shadow-xl aspect-video flex items-center justify-center">
-                            <div class="text-white text-center p-4">
-                                <i class="fa-solid fa-play-circle text-6xl mb-4"></i>
-                                <p class="opacity-75">视频预览</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 安全注意事项 -->
-        <section id="safety" class="py-20 bg-white">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16">
-                    <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-neutral-800 mb-4">安全注意事项</h2>
-                    <p class="text-neutral-600 max-w-2xl mx-auto">安全使用H丁H组合刀具，为您的烹饪过程保驾护航。</p>
-                </div>
-                
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-red-50 border border-red-200 rounded-lg p-6">
-                        <div class="flex items-center mb-6">
-                            <div class="bg-red-100 p-3 rounded-full mr-4">
-                                <i class="fa-solid fa-exclamation-circle text-red-500 text-xl"></i>
-                            </div>
-                            <h3 class="font-bold text-red-700 text-xl">重要安全提示</h3>
-                        </div>
-                        
-                        <ul class="space-y-4">
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-circle-exclamation text-red-500 mt-1 mr-3"></i>
-                                <span class="text-red-600">儿童监护：请将刀具放置于儿童无法触及的位置，避免儿童接触玩耍，防止意外事故发生。</span>
-                            </li>
-                            
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-circle-exclamation text-red-500 mt-1 mr-3"></i>
-                                <span class="text-red-600">操作安全：刀具使用及清理过程中，切勿直接触碰刀片。若为电动款（如有），清理前需先断电，待刀片完全停止转动后再进行操作。</span>
-                            </li>
-                            
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-circle-exclamation text-red-500 mt-1 mr-3"></i>
-                                <span class="text-red-600">异常处理：使用过程中，若出现刀片卡顿、异常声响或其他故障，应立即停止使用，断开电源（电动款）并联系售后服务中心检修，严禁自行拆解刀具，以免造成不必要的伤害。</span>
-                            </li>
-                            
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-circle-exclamation text-red-500 mt-1 mr-3"></i>
-                                <span class="text-red-600">定期检查：建议定期（每季度一次）检查刀具各部件，如发现刀片钝化、螺丝松动或其他部件磨损情况，应及时更换或处理。刀片钝化时，可使用专用磨刀石进行打磨，若磨损严重需联系售后更换新刀片。</span>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <div class="bg-white border border-neutral-200 rounded-lg p-6 shadow-md">
-                        <div class="flex items-center mb-6">
-                            <div class="bg-primary/10 p-3 rounded-full mr-4">
-                                <i class="fa-solid fa-shield text-primary text-xl"></i>
-                            </div>
-                            <h3 class="font-bold text-neutral-800 text-xl">安全设计</h3>
-                        </div>
-                        
-                        <div class="space-y-4">
-                            <div class="flex items-start">
-                                <div class="bg-primary/10 p-2 rounded-full mr-3">
-                                    <i class="fa-solid fa-check text-primary"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-neutral-800 mb-1">防切割手套</h4>
-                                    <p class="text-neutral-600">随刀配备专业防切割手套，保护您的双手安全。</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="bg-primary/10 p-2 rounded-full mr-3">
-                                    <i class="fa-solid fa-check text-primary"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-neutral-800 mb-1">安全锁扣设计</h4>
-                                    <p class="text-neutral-600">刀具闲置时可锁定，防止意外开启。</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="bg-primary/10 p-2 rounded-full mr-3">
-                                    <i class="fa-solid fa-check text-primary"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-neutral-800 mb-1">防滑手柄</h4>
-                                    <p class="text-neutral-600">人体工学设计，握感舒适，操作稳定。</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="bg-primary/10 p-2 rounded-full mr-3">
-                                    <i class="fa-solid fa-check text-primary"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-neutral-800 mb-1">刀片保护套</h4>
-                                    <p class="text-neutral-600">收纳时提供刀片保护，避免意外伤害。</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 售后服务 -->
-        <section id="service" class="py-20 bg-neutral-100">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16">
-                    <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-neutral-800 mb-4">售后服务</h2>
-                    <p class="text-neutral-600 max-w-2xl mx-auto">我们为您提供全方位的售后服务，让您购买无忧。</p>
-                </div>
-                
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-white rounded-xl shadow-md p-8 card-hover">
-                        <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
-                            <i class="fa-solid fa-shield text-primary text-2xl"></i>
-                        </div>
-                        <h3 class="font-bold text-neutral-800 text-xl mb-4 text-center">质保政策</h3>
-                        <p class="text-neutral-600 text-center mb-4">自购买之日起，本品提供 5 年超长质保服务（因处理禁用硬质物体导致的损坏除外）。质保期内，若出现非人为质量问题，我们将免费提供维修或更换服务。</p>
-                        <div class="text-center">
-                            <span class="bg-primary/10 text-primary font-bold px-4 py-2 rounded-full">5年质保</span>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-xl shadow-md p-8 card-hover">
-                        <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
-                            <i class="fa-solid fa-exchange text-primary text-2xl"></i>
-                        </div>
-                        <h3 class="font-bold text-neutral-800 text-xl mb-4 text-center">退换货政策</h3>
-                        <p class="text-neutral-600 text-center mb-4">为保障您的购物权益，自收到商品之日起 30 天内，若商品未拆封且不影响二次销售，可享受无理由退换货服务。请确保包装完整，配件齐全，并联系客服获取退换货指引。</p>
-                        <div class="text-center">
-                            <span class="bg-primary/10 text-primary font-bold px-4 py-2 rounded-full">30天退换</span>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-xl shadow-md p-8 card-hover">
-                        <div class="bg-primary/10 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
-                            <i class="fa-solid fa-headphones text-primary text-2xl"></i>
-                        </div>
-                        <h3 class="font-bold text-neutral-800 text-xl mb-4 text-center">客服支持</h3>
-                        <p class="text-neutral-600 text-center mb-4">如有任何产品咨询、售后问题或使用建议，欢迎随时拨打我们的客服热线：400-XXX-XXXX，客服团队周一至周日 9:00-21:00 为您提供专业服务，我们将竭诚为您解决问题。</p>
-                        <div class="text-center">
-                            <span class="bg-primary/10 text-primary font-bold px-4 py-2 rounded-full">全天候服务</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="mt-16 bg-white rounded-xl shadow-lg p-8 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-40 h-40 bg-primary/5 rounded-bl-full"></div>
-                    <div class="text-center relative z-10">
-                        <h3 class="text-2xl font-bold text-neutral-800 mb-6">常见问题解答</h3>
-                        <div class="max-w-3xl mx-auto space-y-4">
-                            <div class="border border-neutral-200 rounded-lg overflow-hidden">
-                                <button class="faq-toggle w-full flex items-center justify-between p-4 bg-white hover:bg-neutral-50 transition-colors">
-                                    <span class="font-medium text-left">如何正确使用H丁H组合刀具？</span>
-                                    <i class="fa-solid fa-chevron-down text-neutral-400 transition-transform"></i>
-                                </button>
-                                <div class="faq-content hidden p-4 bg-neutral-50 border-t border-neutral-200">
-                                    <p class="text-neutral-600">请参考我们的使用说明，先将食材预处理成合适大小，操作时保持匀速，避免用力过猛。使用后及时清洁并妥善存放。详细步骤可查看使用方法章节或观看教学视频。</p>
-                                </div>
-                            </div>
-                            
-                            <div class="border border-neutral-200 rounded-lg overflow-hidden">
-                                <button class="faq-toggle w-full flex items-center justify-between p-4 bg-white hover:bg-neutral-50 transition-colors">
-                                    <span class="font-medium text-left">刀具变钝了如何处理？</span>
-                                    <i class="fa-solid fa-chevron-down text-neutral-400 transition-transform"></i>
-                                </button>
-                                <div class="faq-content hidden p-4 bg-neutral-50 border-t border-neutral-200">
-                                    <p class="text-neutral-600">H丁H组合刀具配备专用磨刀石，建议每月进行一次打磨以保持锋利度。若刀片磨损严重，请联系我们的客服进行更换。</p>
-                                </div>
-                            </div>
-                            
-                            <div class="border border-neutral-200 rounded-lg overflow-hidden">
-                                <button class="faq-toggle w-full flex items-center justify-between p-4 bg-white hover:bg-neutral-50 transition-colors">
-                                    <span class="font-medium text-left">质保期具体包含哪些内容？</span>
-                                    <i class="fa-solid fa-chevron-down text-neutral-400 transition-transform"></i>
-                                </button>
-                                <div class="faq-content hidden p-4 bg-neutral-50 border-t border-neutral-200">
-                                    <p class="text-neutral-600">我们提供5年质保服务，包含非人为因素导致的质量问题。因处理禁用硬质物体（如骨头、金属等）导致的损坏不在质保范围内。</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 用户评价 -->
-        <section class="py-20 bg-white">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16">
-                    <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-neutral-800 mb-4">用户评价</h2>
-                    <p class="text-neutral-600 max-w-2xl mx-auto">看看其他用户对H丁H组合刀具的真实评价。</p>
-                </div>
-                
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-neutral-50 rounded-xl shadow-md p-6 card-hover">
-                        <div class="flex items-center mb-4">
-                            <img src="https://picsum.photos/id/64/100/100" alt="用户头像" class="w-12 h-12 rounded-full object-cover mr-4">
-                            <div>
-                                <h4 class="font-bold text-neutral-800">张女士</h4>
-                                <div class="flex text-yellow-400">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-neutral-600 mb-4">"使用H丁H组合刀具已经半年了，切肉、剁菜都非常好用，省力又省时。特别是切肉馅时，保留了肉的纹理，做出来的饺子口感特别好。"</p>
-                        <p class="text-neutral-500 text-sm">2025年3月15日</p>
-                    </div>
-                    
-                    <div class="bg-neutral-50 rounded-xl shadow-md p-6 card-hover">
-                        <div class="flex items-center mb-4">
-                            <img src="https://picsum.photos/id/91/100/100" alt="用户头像" class="w-12 h-12 rounded-full object-cover mr-4">
-                            <div>
-                                <h4 class="font-bold text-neutral-800">李先生</h4>
-                                <div class="flex text-yellow-400">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star-half-stroke"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-neutral-600 mb-4">"作为一个烹饪爱好者，我尝试过很多刀具，H丁H组合刀具是我用过的最顺手的。设计很人性化，清洗也方便，性价比非常高。唯一的小缺点是刀架有点占地方。"</p>
-                        <p class="text-neutral-500 text-sm">2025年4月2日</p>
-                    </div>
-                    
-                    <div class="bg-neutral-50 rounded-xl shadow-md p-6 card-hover">
-                        <div class="flex items-center mb-4">
-                            <img src="https://picsum.photos/id/26/100/100" alt="用户头像" class="w-12 h-12 rounded-full object-cover mr-4">
-                            <div>
-                                <h4 class="font-bold text-neutral-800">王厨师</h4>
-                                <div class="flex text-yellow-400">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-neutral-600 mb-4">"在餐厅工作多年，用过很多品牌的刀具，H丁H组合刀具的专业性让我惊喜。特别是处理大量食材时，效率比普通刀具有显著提升，而且设计符合人体工学，长时间使用也不累手。"</p>
-                        <p class="text-neutral-500 text-sm">2025年5月10日</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 购买信息 -->
-        <section id="contact" class="py-20 bg-neutral-100">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16">
-                    <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-neutral-800 mb-4">立即购买</h2>
-                    <p class="text-neutral-600 max-w-2xl mx-auto">选择H丁H组合刀具，开启专业烹饪之旅。</p>
-                </div>
-                
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
-                        <div class="bg-primary/10 p-6 text-center">
-                            <h3 class="font-bold text-neutral-800 text-xl mb-2">基础套装</h3>
-                            <p class="text-primary font-bold text-3xl mb-1">¥299</p>
-                            <p class="text-neutral-500">含肉类刀+蔬果刀</p>
-                        </div>
-                        <div class="p-6">
-                            <ul class="space-y-3 mb-8">
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                    <span>肉类专用刀 x1</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                    <span>蔬果干货刀 x1</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                    <span>防切割手套 x1</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                    <span>专用刀架 x1</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                    <span>磨刀石 x1</span>
-                                </li>
-                            </ul>
-                            <a href="#" class="block w-full bg-primary hover:bg-primary/90 text-white text-center py-3 rounded-lg font-medium transition-colors">
-                                立即购买
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transform scale-105 card-hover relative z-10 border-2 border-primary">
-                        <div class="absolute top-0 right-0 bg-primary text-white px-4 py-1 font-medium text-sm">
-                            热销款
-                        </div>
-                        <div class="bg-primary p-6 text-center">
-                            <h3 class="font-bold text-white text-xl mb-2">豪华套装</h3>
-                            <p class="text-white font-bold text-3xl mb-1">¥399</p>
-                            <p class="text-white/80">含肉类刀+蔬果刀+配件</p>
-                        </div>
-                        <div class="p-6">
-                            <ul class="space-y-3 mb-8">
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                    <span>肉类专用刀 x1</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                    <span>蔬果干货刀 x1</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                    <span>防切割手套 x2</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                    <span>高级木质刀架 x1</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                    <span>专业磨刀石 x1</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                    <span>清洁工具套装 x1</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                    <span>精美礼盒包装</span>
-                                </li>
-                            </ul>
-                            <a href="#" class="block w-full bg-primary hover:bg-primary/90 text-white text-center py-3 rounded-lg font-medium transition-colors">
-                                立即购买
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
-                        <div class="bg-primary/10 p-6 text-center">
-                            <h3 class="font-bold text-neutral-800 text-xl mb-2">专业套装</h3>
-                            <p class="text-primary font-bold text-3xl mb-1">¥599</p>
-                            <p class="text-neutral-500">含全套刀具+专业配件</p>
-                        </div>
-                        <div class="p-6">
-                            <ul class="space-y-3 mb-8">
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                    <span>肉类专用刀 x1</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                    <span>蔬果干货刀 x1</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                    <span>多功能刀 x1</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                    <span>防切割手套 x2</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                    <span>高级木质刀架 x1</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                    <span>专业磨刀套装 x1</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                    <span>清洁保养套装 x1</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                    <span>专业厨师手册 x1</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fa-solid fa-check text-green-500 mt-1 mr-3"></i>
-                                    <span>精美礼盒包装</span>
-                                </li>
-                            </ul>
-                            <a href="#" class="block w-full bg-primary hover:bg-primary/90 text-white text-center py-3 rounded-lg font-medium transition-colors">
-                                立即购买
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="mt-16 bg-white rounded-xl shadow-lg p-8">
-                    <h3 class="text-2xl font-bold text-neutral-800 mb-6 text-center">购买渠道</h3>
-                    <div class="grid md:grid-cols-4 gap-6">
-                        <div class="bg-neutral-50 rounded-lg p-6 text-center card-hover">
-                            <div class="w-16 h-16 mx-auto mb-4">
-                                <i class="fa-brands fa-amazon text-4xl text-neutral-800"></i>
-                            </div>
-                            <h4 class="font-bold text-neutral-800 mb-2">亚马逊</h4>
-                            <p class="text-neutral-600 mb-4">官方旗舰店，品质保证</p>
-                            <a href="#" class="text-primary hover:text-primary/80 font-medium">查看详情</a>
-                        </div>
-                        
-                        <div class="bg-neutral-50 rounded-lg p-6 text-center card-hover">
-                            <div class="w-16 h-16 mx-auto mb-4">
-                                <i class="fa-brands fa-taobao text-4xl text-neutral-800"></i>
-                            </div>
-                            <h4 class="font-bold text-neutral-800 mb-2">淘宝</h4>
-                            <p class="text-neutral-600 mb-4">官方直营店，优惠多多</p>
-                            <a href="#" class="text-primary hover:text-primary/80 font-medium">查看详情</a>
-                        </div>
-                        
-                        <div class="bg-neutral-50 rounded-lg p-6 text-center card-hover">
-                            <div class="w-16 h-16 mx-auto mb-4">
-                                <i class="fa-brands fa-alibaba text-4xl text-neutral-800"></i>
-                            </div>
-                            <h4 class="font-bold text-neutral-800 mb-2">京东</h4>
-                            <p class="text-neutral-600 mb-4">官方旗舰店，快速配送</p>
-                            <a href="#" class="text-primary hover:text-primary/80 font-medium">查看详情</a>
-                        </div>
-                        
-                        <div class="bg-neutral-50 rounded-lg p-6 text-center card-hover">
-                            <div class="w-16 h-16 mx-auto mb-4">
-                                <i class="fa-solid fa-store text-4xl text-neutral-800"></i>
-                            </div>
-                            <h4 class="font-bold text-neutral-800 mb-2">线下门店</h4>
-                            <p class="text-neutral-600 mb-4">全国连锁，实体体验</p>
-                            <a href="#" class="text-primary hover:text-primary/80 font-medium">查找门店</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 联系我们 -->
-        <section class="py-20 bg-white">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16">
-                    <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-neutral-800 mb-4">联系我们</h2>
-                    <p class="text-neutral-600 max-w-2xl mx-auto">如有任何疑问或建议，欢迎随时联系我们。</p>
-                </div>
-                
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <form class="space-y-6">
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="name" class="block text-neutral-700 font-medium mb-2">姓名</label>
-                                    <input type="text" id="name" class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" placeholder="请输入您的姓名">
-                                </div>
-                                
-                                <div>
-                                    <label for="email" class="block text-neutral-700 font-medium mb-2">邮箱</label>
-                                    <input type="email" id="email" class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" placeholder="请输入您的邮箱">
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <label for="subject" class="block text-neutral-700 font-medium mb-2">主题</label>
-                                <input type="text" id="subject" class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" placeholder="请输入咨询主题">
-                            </div>
-                            
-                            <div>
-                                <label for="message" class="block text-neutral-700 font-medium mb-2">留言内容</label>
-                                <textarea id="message" rows="5" class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" placeholder="请输入您的留言内容"></textarea>
-                            </div>
-                            
-                            <button type="submit" class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg font-medium transition-colors shadow-md hover:shadow-lg">
-                                提交留言
-                            </button>
-                        </form>
-                    </div>
-                    
-                    <div>
-                        <div class="bg-neutral-50 rounded-xl p-8 shadow-md">
-                            <h3 class="text-xl font-bold text-neutral-800 mb-6">联系方式</h3>
-                            
-                            <div class="space-y-6">
-                                <div class="flex items-start">
-                                    <div class="bg-primary/10 p-3 rounded-full mr-4">
-                                        <i class="fa-solid fa-phone text-primary"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-neutral-800 mb-1">客服热线</h4>
-                                        <p class="text-neutral-600">400-XXX-XXXX</p>
-                                        <p class="text-neutral-500 text-sm">周一至周日 9:00-21:00</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="flex items-start">
-                                    <div class="bg-primary/10 p-3 rounded-full mr-4">
-                                        <i class="fa-solid fa-envelope text-primary"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-neutral-800 mb-1">邮箱</h4>
-                                        <p class="text-neutral-600">service@h-ding-h.com</p>
-                                        <p class="text-neutral-500 text-sm">24小时内回复</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="flex items-start">
-                                    <div class="bg-primary/10 p-3 rounded-full mr-4">
-                                        <i class="fa-solid fa-map-marker text-primary"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-neutral-800 mb-1">公司地址</h4>
-                                        <p class="text-neutral-600">上海市浦东新区张江高科技园区博云路2号</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="mt-8">
-                                <h4 class="font-bold text-neutral-800 mb-4">关注我们</h4>
-                                <div class="flex space-x-4">
-                                    <a href="#" class="bg-neutral-200 hover:bg-primary hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors">
-                                        <i class="fa-brands fa-weixin"></i>
-                                    </a>
-                                    <a href="#" class="bg-neutral-200 hover:bg-primary hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors">
-                                        <i class="fa-brands fa-weibo"></i>
-                                    </a>
-                                    <a href="#" class="bg-neutral-200 hover:bg-primary hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors">
-                                        <i class="fa-brands fa-instagram"></i>
-                                    </a>
-                                    <a href="#" class="bg-neutral-200 hover:bg-primary hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors">
-                                        <i class="fa-brands fa-youtube"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- 页脚 -->
-    <footer class="bg-neutral-800 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">H丁H组合刀具</h3>
-                    <p class="text-neutral-400 mb-4">专业厨房切割解决方案，为您带来高效、安全、愉悦的烹饪体验。</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-neutral-400 hover:text-white transition-colors">
-                            <i class="fa-brands fa-weixin"></i>
-                        </a>
-                        <a href="#" class="text-neutral-400 hover:text-white transition-colors">
-                            <i class="fa-brands fa-weibo"></i>
-                        </a>
-                        <a href="#" class="text-neutral-400 hover:text-white transition-colors">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                        <a href="#" class="text-neutral-400 hover:text-white transition-colors">
-                            <i class="fa-brands fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold mb-4">快速链接</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#about" class="text-neutral-400 hover:text-white transition-colors">关于我们</a></li>
-                        <li><a href="#product" class="text-neutral-400 hover:text-white transition-colors">产品特点</a></li>
-                        <li><a href="#usage" class="text-neutral-400 hover:text-white transition-colors">使用方法</a></li>
-                        <li><a href="#safety" class="text-neutral-400 hover:text-white transition-colors">安全注意事项</a></li>
-                        <li><a href="#service" class="text-neutral-400 hover:text-white transition-colors">售后服务</a></li>
-                        <li><a href="#contact" class="text-neutral-400 hover:text-white transition-colors">购买信息</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold mb-4">联系我们</h4>
-                    <ul class="space-y-2">
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-phone text-neutral-400 mt-1 mr-3"></i>
-                            <span class="text-neutral-400">400-XXX-XXXX</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-envelope text-neutral-400 mt-1 mr-3"></i>
-                            <span class="text-neutral-400">service@h-ding-h.com</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-map-marker text-neutral-400 mt-1 mr-3"></i>
-                            <span class="text-neutral-400">上海市浦东新区张江高科技园区博云路2号</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-bold mb-4">订阅我们</h4>
-                    <p class="text-neutral-400 mb-4">订阅我们的新闻通讯，获取最新产品信息和优惠活动。</p>
-                    <form class="flex">
-                        <input type="email" placeholder="您的邮箱地址" class="px-4 py-2 rounded-l-lg focus:outline-none text-neutral-800 w-full">
-                        <button type="submit" class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-r-lg transition-colors">
-                            订阅
-                        </button>
-                    </form>
-                </div>
-            </div>
-            
-            <div class="border-t border-neutral-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-neutral-500 mb-4 md:mb-0">© 2025 H丁H组合刀具. 保留所有权利.</p>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-neutral-500 hover:text-white transition-colors">隐私政策</a>
-                    <a href="#" class="text-neutral-500 hover:text-white transition-colors">使用条款</a>
-                    <a href="#" class="text-neutral-500 hover:text-white transition-colors">Cookie政策</a>
-                </div>
-            </div>
+        
+        <!-- 客服支持 -->
+        <div class="bg-white rounded-xl p-8 shadow-md border border-neutral-200 hover-lift">
+          <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
+            <i class="fa-solid fa-headphones text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-neutral-800 mb-4">客服支持</h3>
+          <p class="text-neutral-600 mb-4">如有任何产品咨询、售后问题或使用建议，欢迎随时拨打我们的客服热线：400-XXX-XXXX，客服团队周一至周日 9:00-21:00 为您提供专业服务，我们将竭诚为您解决问题。</p>
+          <div class="mt-6 text-center">
+            <a href="tel:400-XXX-XXXX" class="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full font-medium hover:bg-primary/20 transition-custom">
+              <i class="fa-solid fa-phone mr-2"></i> 400-XXX-XXXX
+            </a>
+          </div>
         </div>
-    </footer>
+      </div>
+      
+      <!-- 联系表单 -->
+      <div class="mt-16 bg-neutral-50 rounded-2xl p-8 shadow-lg">
+        <h3 class="text-2xl font-bold text-neutral-800 mb-6 text-center">联系我们</h3>
+        <p class="text-neutral-600 text-center mb-8 max-w-2xl mx-auto">如有任何疑问或建议，请填写以下表单，我们将尽快与您联系。</p>
+        
+        <form class="max-w-3xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label for="name" class="block text-sm font-medium text-neutral-700 mb-2">姓名</label>
+              <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-custom" placeholder="请输入您的姓名">
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-neutral-700 mb-2">邮箱</label>
+              <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-custom" placeholder="请输入您的邮箱">
+            </div>
+          </div>
+          <div class="mb-6">
+            <label for="phone" class="block text-sm font-medium text-neutral-700 mb-2">电话</label>
+            <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-custom" placeholder="请输入您的电话">
+          </div>
+          <div class="mb-6">
+            <label for="subject" class="block text-sm font-medium text-neutral-700 mb-2">主题</label>
+            <select id="subject" name="subject" class="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-custom">
+              <option value="" disabled selected>请选择咨询主题</option>
+              <option value="product">产品咨询</option>
+              <option value="order">订单查询</option>
+              <option value="after-sales">售后服务</option>
+              <option value="other">其他问题</option>
+            </select>
+          </div>
+          <div class="mb-6">
+            <label for="message" class="block text-sm font-medium text-neutral-700 mb-2">留言内容</label>
+            <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 rounded-lg border border-neutral-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-custom" placeholder="请输入您的留言内容"></textarea>
+          </div>
+          <div class="flex justify-center">
+            <button type="submit" class="px-8 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-custom shadow-md hover:shadow-lg">
+              提交留言
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // 导航栏滚动效果
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('py-2', 'shadow-lg');
-                navbar.classList.remove('py-3', 'shadow-md');
-            } else {
-                navbar.classList.add('py-3', 'shadow-md');
-                navbar.classList.remove('py-2', 'shadow-lg');
-            }
-        });
+  <!-- 页脚 -->
+  <footer class="bg-neutral-900 text-white pt-16 pb-8">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div>
+          <div class="flex items-center mb-6">
+            <i class="fa-solid fa-knife-kitchen text-primary text-2xl mr-2"></i>
+            <span class="text-xl font-bold">H丁H组合刀具</span>
+          </div>
+          <p class="text-neutral-400 mb-6">创新厨房工具，专业品质保证</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-neutral-400 hover:text-white transition-custom">
+              <i class="fa-brands fa-weibo text-xl"></i>
+            </a>
+            <a href="#" class="text-neutral-400 hover:text-white transition-custom">
+              <i class="fa-brands fa-wechat text-xl"></i>
+            </a>
+            <a href="#" class="text-neutral-400 hover:text-white transition-custom">
+              <i class="fa-brands fa-instagram text-xl"></i>
+            </a>
+            <a href="#" class="text-neutral-400 hover:text-white transition-custom">
+              <i class="fa-brands fa-youtube text-xl"></i>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold mb-6">快速链接</h4>
+          <ul class="space-y-3">
+            <li><a href="#intro" class="text-neutral-400 hover:text-white transition-custom">产品简介</a></li>
+            <li><a href="#scope" class="text-neutral-400 hover:text-white transition-custom">适用范围</a></li>
+            <li><a href="#purchase" class="text-neutral-400 hover:text-white transition-custom">购买方式</a></li>
+            <li><a href="#usage" class="text-neutral-400 hover:text-white transition-custom">使用方法</a></li>
+            <li><a href="#safety" class="text-neutral-400 hover:text-white transition-custom">安全注意事项</a></li>
+            <li><a href="#service" class="text-neutral-400 hover:text-white transition-custom">售后服务</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold mb-6">联系我们</h4>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <i class="fa-solid fa-map-marker-alt text-primary mt-1 mr-3"></i>
+              <span class="text-neutral-400">中国上海市浦东新区张江高科技园区博云路2号浦软大厦</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fa-solid fa-phone text-primary mr-3"></i>
+              <span class="text-neutral-400">400-XXX-XXXX</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fa-solid fa-envelope text-primary mr-3"></i>
+              <span class="text-neutral-400">service@h-ding-h.com</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fa-solid fa-clock text-primary mr-3"></i>
+              <span class="text-neutral-400">周一至周日 9:00-21:00</span>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold mb-6">下载中心</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-neutral-400 hover:text-white transition-custom">产品说明书</a></li>
+            <li><a href="#" class="text-neutral-400 hover:text-white transition-custom">保修卡</a></li>
+            <li><a href="#" class="text-neutral-400 hover:text-white transition-custom">操作视频</a></li>
+            <li><a href="#" class="text-neutral-400 hover:text-white transition-custom">产品目录</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-neutral-800 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-neutral-500 text-sm mb-4 md:mb-0">© 2025 H丁H组合刀具 版权所有</p>
+          <div class="flex space-x-6">
+            <a href="#" class="text-neutral-500 hover:text-white text-sm transition-custom">隐私政策</a>
+            <a href="#" class="text-neutral-500 hover:text-white text-sm transition-custom">使用条款</a>
+            <a href="#" class="text-neutral-500 hover:text-white text-sm transition-custom">网站地图</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 导航栏滚动效果
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('shadow-md');
+        navbar.classList.remove('bg-white/95');
+        navbar.classList.add('bg-white');
+      } else {
+        navbar.classList.remove('shadow-md');
+        navbar.classList.add('bg-white/95');
+        navbar.classList.remove('bg-white');
+      }
+    });
+    
+    // 移动端菜单切换
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
         
-        // 移动端菜单
-        const menuBtn = document.getElementById('menuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            menuBtn.innerHTML = mobileMenu.classList.contains('hidden') 
-                ? '<i class="fa-solid fa-bars text-xl"></i>' 
-                : '<i class="fa-solid fa-times text-xl"></i>';
-        });
+        // 关闭移动菜单（如果打开）
+        document.getElementById('mobile-menu').classList.add('hidden');
         
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // 关闭移动端菜单
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                        menuBtn.innerHTML = '<i class="fa-solid fa-bars text-xl"></i>';
-                    }
-                }
-            });
-        });
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
         
-        // FAQ 切换
-        const faqToggles = document.querySelectorAll('.faq-toggle');
-        faqToggles.forEach(toggle => {
-            toggle.addEventListener('click', () => {
-                const content = toggle.nextElementSibling;
-                const icon = toggle.querySelector('i');
-                
-                content.classList.toggle('hidden');
-                icon.classList.toggle('rotate-180');
-            });
-        });
-        
-        // 图片懒加载
-        document.addEventListener("DOMContentLoaded", function() {
-            const lazyImages = [].slice.call(document.querySelectorAll("img"));
-            
-            if ("IntersectionObserver" in window) {
-                let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            let lazyImage = entry.target;
-                            lazyImage.classList.add("fade-in");
-                            lazyImageObserver.unobserve(lazyImage);
-                        }
-                    });
-                });
-                
-                lazyImages.forEach(function(lazyImage) {
-                    lazyImageObserver.observe(lazyImage);
-                });
-            }
-        });
-    </script>
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
     
